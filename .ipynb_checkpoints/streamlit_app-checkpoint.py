@@ -10,7 +10,7 @@ from scipy.stats import chi2_contingency
 from PIL import Image
 
 def filterBy(df, campus):
-    filtered_df = df[df['Campus'] == college]  
+    filtered_df = df[df['Campus'] == campus]  
     return filtered_df
 
 def loadcsvfile(campus):
