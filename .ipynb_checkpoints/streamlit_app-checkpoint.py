@@ -19,10 +19,7 @@ def loadcsvfile(campus):
     st.dataframe(df, width=800, height=400)
     st.write("Properties of the dataset")
     desc = df.describe().T
-    st.write(desc) 
-        
-    else:
-        st.write('No data to process!')   
+    st.write(desc)  
     return df
     
 # Define the Streamlit app
