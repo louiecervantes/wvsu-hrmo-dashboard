@@ -15,11 +15,7 @@ def filterBy(df, college):
 
 def loadcsvfile(campus):
     csvfile = 'employee_cleaned.csv'
-    df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin')
-    st.dataframe(df, width=800, height=400)
-    st.write("Properties of the dataset")
-    desc = df.describe().T
-    st.write(desc)  
+    df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin') 
     return df
     
 # Define the Streamlit app
@@ -60,24 +56,20 @@ def app():
         df = loadcsvfile(campus)
     
 
-    if st.button('By Gender'):
-        if hasData==True:
-            #Gender
-            st.write("Distribution by gender")
-            scounts=df['GENDER'].value_counts()
-            labels = list(scounts.index)
-            sizes = list(scounts.values)
-            custom_colours = ['#ff7675', '#74b9ff']
-            fig = plt.figure(figsize=(12, 4))
-            plt.subplot(1, 2, 1)
-            plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
-            plt.subplot(1, 2, 2)
-            sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
-            st.pyplot(fig)
-        else:
-            st.write("No data to process!")
-            
-            
+    if st.button('Distribution By Gender'):
+        #Gender
+        st.write("Distribution by gender")
+        scounts=df['GENDER'].value_counts()
+        labels = list(scounts.index)
+        sizes = list(scounts.values)
+        custom_colours = ['#ff7675', '#74b9ff']
+        fig = plt.figure(figsize=(12, 4))
+        plt.subplot(1, 2, 1)
+        plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
+        plt.subplot(1, 2, 2)
+        sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
+        st.pyplot(fig)
+              
     st.subheader('Alumni engangement')
     st.write('Under development')
     st.subheader('Contact Information')
