@@ -59,7 +59,7 @@ def app():
     if st.button('Distribution By Gender'):
         #Gender
         st.write("Distribution by gender")
-        scounts=df['GENDER'].value_counts()
+        scounts=df['Gender'].value_counts()
         labels = list(scounts.index)
         sizes = list(scounts.values)
         custom_colours = ['#ff7675', '#74b9ff']
