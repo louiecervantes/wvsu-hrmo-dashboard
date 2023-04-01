@@ -103,6 +103,7 @@ def app():
     df['service_bracket'] = df.apply(lambda x : getServiceBracket(x['Years of Service']), axis=1)
 
     if st.button('Distribution By Gender'):
+        df = filterBy(df, campus)
         #Gender
         st.write("Distribution by gender")
         scounts=df['Gender'].value_counts()
@@ -117,6 +118,8 @@ def app():
         st.pyplot(fig)
 
     if st.button('Distribution By Employee Type'):
+        df = filterBy(df, campus)
+        
         st.write("Distribution by gender")
         scounts=df['Type'].value_counts()
         labels = list(scounts.index)
