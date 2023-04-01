@@ -34,7 +34,34 @@ def getAgeBracket(age):
     return '20 to 29'
   else: 
     return 'invalid age'
+
+#Define the Age Brackets
+def getServiceBracket(years):
+    years = int(years)
     
+  if ( years > 45 ):
+    return '46 to 50'
+  if ( years > 40 ):
+    return '41 to 45'
+  if ( years > 35 ):
+    return '36 to 40'
+  if ( years > 30 ):
+    return '31 to 35'   
+  if ( years > 25 ):
+    return '26 to 30'
+  if ( years > 20):
+    return '21 to 25'
+  if ( years > 15):
+    return '16 to 20'
+  if ( years > 10):
+    return '11 to 15'
+  if ( years > 5):
+    return '5 to 10'
+  if ( years > 0):
+    return '1 to 5'
+  else: 
+    return 'invalid years'
+
 # Define the Streamlit app
 def app():
     
@@ -74,7 +101,7 @@ def app():
         df = filterBy(df, campus)
         
     df['age_bracket'] = df.apply(lambda x : getAgeBracket(x['Age']), axis=1)
-    st.write(df.age_bracket.value_counts())
+    df['service_bracket'] = df.apply(lambda x : getServiceBracket(x['Years of Service']), axis=1)
 
     if st.button('Distribution By Gender'):
         #Gender
@@ -89,8 +116,21 @@ def app():
         plt.subplot(1, 2, 2)
         sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
         st.pyplot(fig)
-              
 
+    if st.button('Distribution By Employee Type'):
+        st.write("Distribution by gender")
+        scounts=df['Type'].value_counts()
+        labels = list(scounts.index)
+        sizes = list(scounts.values)
+        custom_colours = ['#ff7675', '#74b9ff']
+
+        plt.figure(figsize=(12, 4))
+        plt.subplot(1, 2, 1)
+        plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, 
+               autopct='%1.0f%%', colors=custom_colours)
+        plt.subplot(1, 2, 2)
+        sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
+        st.pyplot(fig)
             
 #run the app
 if __name__ == "__main__":
