@@ -17,6 +17,21 @@ def loadcsvfile(campus):
     csvfile = 'employee_cleaned.csv'
     df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin') 
     return df
+
+#Define the Age Brackets
+def getAgeBracket(age):   
+  if ( age > 59 ):
+    return '60 to 65'
+  if ( age > 49):
+    return '50 to 59'
+  if ( age > 39):
+    return '40 to 49'
+  if ( age > 29):
+    return '30 to 39'
+  if ( age > 19):
+    return '20 to 29'
+  else: 
+    return 'invalid age'
     
 # Define the Streamlit app
 def app():
@@ -55,6 +70,9 @@ def app():
         campus = selected_option
         df = loadcsvfile(campus)
         df = filterBy(df, campus)
+        
+    df['age_bracket'] = df.apply(lambda x : getAgeBracket(x['Age']), axis=1)
+    st.write(df.age_bracket.value_counts())
 
     if st.button('Distribution By Gender'):
         #Gender
