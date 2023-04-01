@@ -19,7 +19,9 @@ def loadcsvfile(campus):
     return df
 
 #Define the Age Brackets
-def getAgeBracket(age):   
+def getAgeBracket(age):
+  age = int(age)
+
   if ( age > 59 ):
     return '60 to 65'
   if ( age > 49):
