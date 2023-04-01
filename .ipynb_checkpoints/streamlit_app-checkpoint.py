@@ -46,7 +46,7 @@ def app():
     
     st.subheader("Employee Demographics")
     campus = 'Main'
-    options = ['Main', 'Calinog', 'Himamaylan', 'Janiuay', 'Lambunao', 'Pototan','All']
+    options = ['Main Campus', 'Calinog Campus', 'Himamaylan Campus', 'Janiuay Campus', 'Lambunao Campus', 'Pototan Campus', 'WVSU Medical Center', 'All']
     selected_option = st.selectbox('Select the campus', options)
     if selected_option=='All':
         campus = selected_option
@@ -70,10 +70,7 @@ def app():
         sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
         st.pyplot(fig)
               
-    st.subheader('Alumni engangement')
-    st.write('Under development')
-    st.subheader('Contact Information')
-    st.write('Under development')
+
             
 #run the app
 if __name__ == "__main__":
