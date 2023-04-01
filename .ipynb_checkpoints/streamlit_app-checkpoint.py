@@ -9,8 +9,8 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.stats import chi2_contingency
 from PIL import Image
 
-def filterBy(df, college):
-    filtered_df = df[df['COLLEGE'] == college]  
+def filterBy(df, campus):
+    filtered_df = df[df['Campus'] == college]  
     return filtered_df
 
 def loadcsvfile(campus):
@@ -48,13 +48,13 @@ def app():
     campus = 'Main'
     options = ['Main', 'Calinog', 'Himamaylan', 'Janiuay', 'Lambunao', 'Pototan','All']
     selected_option = st.selectbox('Select the campus', options)
-    if selected_option=='Main':
+    if selected_option=='All':
         campus = selected_option
         df = loadcsvfile(campus)
     else:
         campus = selected_option
         df = loadcsvfile(campus)
-    
+        df = filterBy(df, campus)
 
     if st.button('Distribution By Gender'):
         #Gender
