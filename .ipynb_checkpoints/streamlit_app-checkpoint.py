@@ -46,7 +46,7 @@ def app():
     
     st.subheader("Employee Demographics")
     campus = 'Main'
-    options = ['Main Campus', 'Calinog Campus', 'Himamaylan Campus', 'Janiuay Campus', 'Lambunao Campus', 'Pototan Campus', 'WVSU Medical Center', 'All']
+    options = ['Main Campus', 'CAF Campus', 'Calinog Campus', 'Himamaylan Campus', 'Janiuay Campus', 'Lambunao Campus', 'Pototan Campus', 'WVSU Medical Center', 'All']
     selected_option = st.selectbox('Select the campus', options)
     if selected_option=='All':
         campus = selected_option
