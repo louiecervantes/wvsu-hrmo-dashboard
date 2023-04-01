@@ -20,47 +20,46 @@ def loadcsvfile(campus):
 
 #Define the Age Brackets
 def getAgeBracket(age):
-  age = int(age)
+    age = int(age)
 
-  if ( age > 59 ):
-    return '60 to 65'
-  if ( age > 49):
-    return '50 to 59'
-  if ( age > 39):
-    return '40 to 49'
-  if ( age > 29):
-    return '30 to 39'
-  if ( age > 19):
-    return '20 to 29'
-  else: 
-    return 'invalid age'
+    if ( age > 59 ):
+        return '60 to 65'
+    if ( age > 49):
+        return '50 to 59'
+    if ( age > 39):
+        return '40 to 49'
+    if ( age > 29):
+        return '30 to 39'
+    if ( age > 19):
+        return '20 to 29'
+    else: 
+        return 'invalid age'
 
 #Define the Age Brackets
 def getServiceBracket(years):
-    years = int(years)
-    
-  if ( years > 45 ):
-    return '46 to 50'
-  if ( years > 40 ):
-    return '41 to 45'
-  if ( years > 35 ):
-    return '36 to 40'
-  if ( years > 30 ):
-    return '31 to 35'   
-  if ( years > 25 ):
-    return '26 to 30'
-  if ( years > 20):
-    return '21 to 25'
-  if ( years > 15):
-    return '16 to 20'
-  if ( years > 10):
-    return '11 to 15'
-  if ( years > 5):
-    return '5 to 10'
-  if ( years > 0):
-    return '1 to 5'
-  else: 
-    return 'invalid years'
+    years = int(years)    
+    if ( years > 45 ):
+        return '46 to 50'
+    if ( years > 40 ):
+        return '41 to 45'
+    if ( years > 35 ):
+        return '36 to 40'
+    if ( years > 30 ):
+        return '31 to 35'   
+    if ( years > 25 ):
+        return '26 to 30'
+    if ( years > 20):
+        return '21 to 25'
+    if ( years > 15):
+        return '16 to 20'
+    if ( years > 10):
+        return '11 to 15'
+    if ( years > 5):
+        return '5 to 10'
+    if ( years > 0):
+        return '1 to 5'
+    else: 
+        return 'invalid years'
 
 # Define the Streamlit app
 def app():
