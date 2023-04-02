@@ -64,6 +64,32 @@ def getServiceBracket(years):
     else: 
         return 'invalid years'
 
+def createPlots(df, columnName)
+    st.write('Employee Distribution by ' + columnName)
+    scounts=df[columnName].value_counts()
+    labels = list(scounts.index)
+    sizes = list(scounts.values)
+    custom_colours = ['#ff7675', '#74b9ff']
+
+    fig = plt.figure(figsize=(12, 4))
+    plt.subplot(1, 2, 1)
+    plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
+    plt.subplot(1, 2, 2)
+    sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
+    st.pyplot(fig)
+
+    # get value counts and percentages of unique values in column 
+    value_counts = df[columnName].value_counts(normalize=True)
+    value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+    value_counts.name = 'Percentage'
+
+    # combine counts and percentages into a dataframe
+    result = pd.concat([df[columnName].value_counts(), value_counts], axis=1)
+    result.columns = ['Counts', 'Percentage']
+    st.write(pd.DataFrame(result))
+    
+    return
+
 # Define the Streamlit app
 def app():
     
@@ -93,6 +119,7 @@ def app():
     st.subheader("Employee Demographics")
     campus = 'Main'
     options = ['All', 'Main Campus', 'CAF Campus', 'Calinog Campus', 'Himamaylan Campus', 'Janiuay Campus', 'Lambunao Campus', 'Pototan Campus', 'WVSU Medical Center']
+    
     selected_option = st.selectbox('Select the campus', options)
     if selected_option=='All':
         campus = selected_option
@@ -107,55 +134,17 @@ def app():
 
     if st.button('Distribution By Gender'):
         df = filterBy(df, campus)
-        #Gender
-        st.write("Distribution by gender")
-        scounts=df['Gender'].value_counts()
-        labels = list(scounts.index)
-        sizes = list(scounts.values)
-        custom_colours = ['#ff7675', '#74b9ff']
-        fig = plt.figure(figsize=(12, 4))
-        plt.subplot(1, 2, 1)
-        plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
-        plt.subplot(1, 2, 2)
-        sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
-        st.pyplot(fig)
-
-        # get value counts and percentages of unique values in column 
-        value_counts = df['Gender'].value_counts(normalize=True)
-        value_counts = value_counts.mul(100).round(2).astype(str) + '%'
-        value_counts.name = 'Percentage'
-
-        # combine counts and percentages into a dataframe
-        result = pd.concat([df['Gender'].value_counts(), value_counts], axis=1)
-        result.columns = ['Counts', 'Percentage']
-
-        st.write(pd.DataFrame(result))
+        createPlots(df, 'Gender')
 
     if st.button('Distribution By Employee Type'):
-        df = filterBy(df, campus)
+        df = filterBy(df, campus)  
+        createPlots(df, 'Employee Type')
+   
         
-        st.write("Distribution by gender")
-        scounts=df['Type'].value_counts()
-        labels = list(scounts.index)
-        sizes = list(scounts.values)
-        custom_colours = ['#ff7675', '#74b9ff']
+    if st.button('Distribution By Employment Status'):
+        df = filterBy(df, campus)  
+        createPlots(df, 'Employment Status')
 
-        fig = plt.figure(figsize=(12, 4))
-        plt.subplot(1, 2, 1)
-        plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
-        plt.subplot(1, 2, 2)
-        sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
-        st.pyplot(fig)
-        
-        # get value counts and percentages of unique values in column 
-        value_counts = df['Type'].value_counts(normalize=True)
-        value_counts = value_counts.mul(100).round(2).astype(str) + '%'
-        value_counts.name = 'Percentage'
-
-        # combine counts and percentages into a dataframe
-        result = pd.concat([df['Type'].value_counts(), value_counts], axis=1)
-        result.columns = ['Counts', 'Percentage']
-            
 #run the app
 if __name__ == "__main__":
     app()
