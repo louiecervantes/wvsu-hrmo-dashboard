@@ -90,6 +90,21 @@ def createPlots(df, columnName):
     
     return
 
+def createTable(df, columnName):
+    
+    st.write('Employee Distribution by ' + columnName)
+    # get value counts and percentages of unique values in column 
+    value_counts = df[columnName].value_counts(normalize=True)
+    value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+    value_counts.name = 'Percentage'
+
+    # combine counts and percentages into a dataframe
+    result = pd.concat([df[columnName].value_counts(), value_counts], axis=1)
+    result.columns = ['Counts', 'Percentage']
+    st.write(pd.DataFrame(result))
+    
+    return
+
 # Define the Streamlit app
 def app():
     
@@ -153,7 +168,10 @@ def app():
         df = filterBy(df, campus)  
         createPlots(df, 'Years in Service Bracket')
 
-
+    if st.button('Distribution By Position'):
+        df = filterBy(df, campus)  
+        createTable(df, 'Position')
+        
 #run the app
 if __name__ == "__main__":
     app()
