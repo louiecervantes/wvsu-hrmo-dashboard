@@ -129,8 +129,8 @@ def app():
         df = loadcsvfile(campus)
         df = filterBy(df, campus)
         
-    df['age_bracket'] = df.apply(lambda x : getAgeBracket(x['Age']), axis=1)
-    df['service_bracket'] = df.apply(lambda x : getServiceBracket(x['Years of Service']), axis=1)
+    df['Age Bracket'] = df.apply(lambda x : getAgeBracket(x['Age']), axis=1)
+    df['Years in Service Bracket'] = df.apply(lambda x : getServiceBracket(x['Years of Service']), axis=1)
 
     if st.button('Distribution By Gender'):
         df = filterBy(df, campus)
@@ -144,6 +144,15 @@ def app():
     if st.button('Distribution By Employment Status'):
         df = filterBy(df, campus)  
         createPlots(df, 'Employment Status')
+
+    if st.button('Distribution By Age Bracket'):
+        df = filterBy(df, campus)  
+        createPlots(df, 'Age Bracket')
+        
+    if st.button('Distribution By Years in Service Bracket'):
+        df = filterBy(df, campus)  
+        createPlots(df, 'Years in Service Bracket')
+
 
 #run the app
 if __name__ == "__main__":
