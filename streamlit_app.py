@@ -138,7 +138,7 @@ def app():
 
     if st.button('Distribution By Employee Type'):
         df = filterBy(df, campus)  
-        createPlots(df, 'Employee Type')
+        createPlots(df, 'Type')
    
         
     if st.button('Distribution By Employment Status'):
