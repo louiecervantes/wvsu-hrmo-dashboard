@@ -146,6 +146,15 @@ def app():
         plt.subplot(1, 2, 2)
         sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
         st.pyplot(fig)
+        
+        # get value counts and percentages of unique values in column 
+        value_counts = df['Type'].value_counts(normalize=True)
+        value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+        value_counts.name = 'Percentage'
+
+        # combine counts and percentages into a dataframe
+        result = pd.concat([df['Type'].value_counts(), value_counts], axis=1)
+        result.columns = ['Counts', 'Percentage']
             
 #run the app
 if __name__ == "__main__":
