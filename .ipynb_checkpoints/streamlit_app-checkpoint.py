@@ -120,6 +120,17 @@ def app():
         sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
         st.pyplot(fig)
 
+        # get value counts and percentages of unique values in column 
+        value_counts = df['Gender'].value_counts(normalize=True)
+        value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+        value_counts.name = 'Percentage'
+
+        # combine counts and percentages into a dataframe
+        result = pd.concat([df['Gender'].value_counts(), value_counts], axis=1)
+        result.columns = ['Counts', 'Percentage']
+
+        st.write(pd.DataFrame(result))
+
     if st.button('Distribution By Employee Type'):
         df = filterBy(df, campus)
         
