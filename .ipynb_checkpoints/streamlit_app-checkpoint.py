@@ -64,7 +64,7 @@ def getServiceBracket(years):
     else: 
         return 'invalid years'
 
-def createPlots(df, columnName)
+def createPlots(df, columnName):
     st.write('Employee Distribution by ' + columnName)
     scounts=df[columnName].value_counts()
     labels = list(scounts.index)
