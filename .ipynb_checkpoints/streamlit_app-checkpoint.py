@@ -10,16 +10,16 @@ from scipy.stats import chi2_contingency
 from PIL import Image
 
 def filterBy(df, campus):
-    filtered_df = df[df['Campus'] == campus]  
-    return filtered_df
-
-def loadcsvfile(campus):
     if campus=='All':
         return df
-    else:
-        csvfile = 'employee_cleaned.csv'
-        df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin') 
-        return df
+    else:  
+        filtered_df = df[df['Campus'] == campus]  
+        return filtered_df
+
+def loadcsvfile(campus):
+    csvfile = 'employee_cleaned.csv'
+    df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin') 
+    return df
 
 #Define the Age Brackets
 def getAgeBracket(age):
