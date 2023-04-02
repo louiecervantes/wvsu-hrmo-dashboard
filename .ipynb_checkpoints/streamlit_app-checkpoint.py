@@ -14,9 +14,12 @@ def filterBy(df, campus):
     return filtered_df
 
 def loadcsvfile(campus):
-    csvfile = 'employee_cleaned.csv'
-    df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin') 
-    return df
+    if campus=='All':
+        return df
+    else:
+        csvfile = 'employee_cleaned.csv'
+        df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin') 
+        return df
 
 #Define the Age Brackets
 def getAgeBracket(age):
