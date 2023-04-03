@@ -105,7 +105,7 @@ def createTable(df, columnName):
     
     return
 
-def twowayPlot(df, var1, car2):
+def twowayPlot(df, var1, var2):
     fig = plt.figure(figsize =(10, 3))
     p = sns.countplot(x=var1, data = df, hue=var2, palette='bright')
     _ = plt.setp(p.get_xticklabels(), rotation=90) 
