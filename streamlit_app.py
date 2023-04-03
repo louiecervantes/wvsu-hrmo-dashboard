@@ -105,6 +105,12 @@ def createTable(df, columnName):
     
     return
 
+def twowayPlot(df, var1, car2):
+    fig = plt.figure(figsize =(10, 3))
+    p = sns.countplot(x=var1, data = df, hue=var2, palette='bright')
+_ = plt.setp(p.get_xticklabels(), rotation=90) 
+    st.pyplot(fig)
+
 # Define the Streamlit app
 def app():
     
@@ -171,6 +177,10 @@ def app():
     if st.button('Distribution By Position'):
         df = filterBy(df, campus)  
         createTable(df, 'Position')
+    
+    if st.button('Distribution By Position'):
+        df = filterBy(df, campus)  
+        twowayPlot(df, 'Age Bracket', 'Gender')
         
 #run the app
 if __name__ == "__main__":
