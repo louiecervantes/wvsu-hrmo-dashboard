@@ -108,7 +108,7 @@ def createTable(df, columnName):
 def twowayPlot(df, var1, car2):
     fig = plt.figure(figsize =(10, 3))
     p = sns.countplot(x=var1, data = df, hue=var2, palette='bright')
-_ = plt.setp(p.get_xticklabels(), rotation=90) 
+    _ = plt.setp(p.get_xticklabels(), rotation=90) 
     st.pyplot(fig)
 
 # Define the Streamlit app
