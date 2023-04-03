@@ -182,6 +182,10 @@ def app():
         df = filterBy(df, campus)  
         twowayPlot(df, 'Age Bracket', 'Gender')
         
+    if st.button('Distribution By Gender across Employment Status'):
+        df = filterBy(df, campus)  
+        twowayPlot(df, 'Employment Status', 'Gender')
+        
 #run the app
 if __name__ == "__main__":
     app()
