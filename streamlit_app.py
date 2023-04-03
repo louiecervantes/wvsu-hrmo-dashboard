@@ -178,7 +178,7 @@ def app():
         df = filterBy(df, campus)  
         createTable(df, 'Position')
     
-    if st.button('Distribution By Position'):
+    if st.button('Distribution By Gender across Age Brackets'):
         df = filterBy(df, campus)  
         twowayPlot(df, 'Age Bracket', 'Gender')
         
